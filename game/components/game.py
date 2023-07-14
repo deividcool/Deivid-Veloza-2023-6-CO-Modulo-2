@@ -1,13 +1,14 @@
 import pygame
 
 from game.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
-
+from game.components.spaceship import Spaceship
 
 class Game:
     def __init__(self):
         pygame.init()
         pygame.display.set_caption(TITLE)
         pygame.display.set_icon(ICON)
+        self.player = Spaceship()
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         self.clock = pygame.time.Clock()
         self.playing = False
@@ -31,12 +32,14 @@ class Game:
                 self.playing = False
 
     def update(self):
-        pass
+        user_iput = pygame.key.get_pressed()
+        self.player.update(user_iput,self)
 
     def draw(self):
         self.clock.tick(FPS)
         self.screen.fill((255, 255, 255))
         self.draw_background()
+        self.player.draw(self.screen)
         pygame.display.update()
         pygame.display.flip()
 
