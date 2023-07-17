@@ -1,6 +1,6 @@
 from game.components.enemies.enemy import Enemy
-from game.components.enemies.enemytwo import EnemyTwo
-from game.components.enemies.enemythree import EnemyThree
+from game.components.enemies.enemy_two import EnemyTwo
+from game.components.enemies.enemy_three import EnemyThree
 
 class EnemyManager:
     def __init__(self):
@@ -18,13 +18,13 @@ class EnemyManager:
             enemy.update(self.enemies3, game)
 
     def add_enemy(self):
-        if len(self.enemies) < 1:
+        if len(self.enemies) < 3:
             enemy = Enemy()
             self.enemies.append(enemy)
-        if len(self.enemies2) < 1:
+        if len(self.enemies2) < 2:
             enemytwo = EnemyTwo()
             self.enemies2.append(enemytwo)
-        if len(self.enemies3) < 1:
+        if len(self.enemies3) < 5:
             enemyThree = EnemyThree()
             self.enemies3.append(enemyThree)
 
