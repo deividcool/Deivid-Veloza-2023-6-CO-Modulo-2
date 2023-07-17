@@ -36,20 +36,18 @@ class Spaceship(Sprite):
             self.move_down(game)
 
 
-        """ if user_input[pygame.K_SPACE]:
-            self.shoot(game) """
 
     def move_left(self,game):
         if self.rect.left > 0:
-            self.rect.x -= 10 + game.player.speed
+            self.rect.x -= 10 
         elif self.rect.left < 10:
-            self.rect.x = SCREEN_WIDTH - 10 + game.player.speed
+            self.rect.x = SCREEN_WIDTH - 10 
 
     def move_right(self,game):
         if self.rect.right < SCREEN_WIDTH:
-            self.rect.x += 10 + game.player.speed
+            self.rect.x += 10 
         elif self.rect.right > SCREEN_WIDTH - 10:
-            self.rect.x = 0 + 10 + game.player.speed
+            self.rect.x = 10 
 
     def move_up(self,game):
         if self.rect.y > SCREEN_HEIGHT // 2:
@@ -71,3 +69,8 @@ class Spaceship(Sprite):
     """  def shoot(self, game):
         bullet = Bullet(self)
         game.bullet_manager.add_bullet(bullet) """
+    
+
+    
+    """ if user_input[pygame.K_SPACE]:
+            self.shoot(game) """
