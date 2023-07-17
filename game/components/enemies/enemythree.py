@@ -2,12 +2,11 @@ import pygame
 import random
 
 from pygame.sprite import  Sprite
-from game.utils.constants import ENEMY_1,SCREEN_HEIGHT, SCREEN_WIDTH
-""" from game.components.bullets.bullet import Bullet """
+from game.utils.constants import ENEMY_3,SCREEN_HEIGHT, SCREEN_WIDTH
 
 
-class Enemy(Sprite):
-    Y_POS = 0
+class EnemyThree(Sprite):
+    Y_POS = 20
     X_POST_LIST = [50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550]
     SPEED_X = 5
     SPEED_Y = 1
@@ -17,11 +16,11 @@ class Enemy(Sprite):
     }
 
     def __init__(self):
-        self.image = ENEMY_1
+        self.image = ENEMY_3
         self.image = pygame.transform.scale(self.image, (40,60))
         self.rect = self.image.get_rect()
-        self.rect.x = random.randint(0, SCREEN_WIDTH/2)
-        self.rect.y = self.Y_POS + 100
+        self.rect.x = random.randint(200, SCREEN_WIDTH)
+        self.rect.y = self.Y_POS - 150
 
         self.type = 'enemy'
 
@@ -54,16 +53,5 @@ class Enemy(Sprite):
         if self.rect.y >= SCREEN_HEIGHT:
             ships.remove(self)
 
-
     def draw(self,screen):
         screen.blit(self.image,(self.rect.x, self.rect.y))
-
-
-
-
-    """ def shoot(self, bullet_manager):
-        current_time = pygame.time.get_ticks()
-        if self.shooting_time <= current_time:
-            bullet = Bullet(self)
-            bullet_manager.add_bullet(bullet)
-            self.shooting_time += random.randint(20,50) """
