@@ -1,40 +1,31 @@
-from game.components.enemies.enemy import Enemy
-from game.components.enemies.enemy_two import EnemyTwo
-from game.components.enemies.enemy_three import EnemyThree
+import random
+
+from game.components.enemies.common_enemy import CommonEnemy
+from game.components.enemies.enemy_two import StrongEnemy
+
 
 class EnemyManager:
-    def __init__(self):
-        self.enemies = []
-        self.enemies2 = []
-        self.enemies3 = []
+  def __init__(self):
+    self.enemies = []
     
-    def update(self, game):
-        self.add_enemy()
-        for enemy in self.enemies:
-            enemy.update(self.enemies, game)
-        for enemy in self.enemies2:
-            enemy.update(self.enemies2, game)
-        for enemy in self.enemies3:
-            enemy.update(self.enemies3, game)
-
-    def add_enemy(self):
-        if len(self.enemies) < 3:
-            enemy = Enemy()
-            self.enemies.append(enemy)
-        if len(self.enemies2) < 2:
-            enemytwo = EnemyTwo()
-            self.enemies2.append(enemytwo)
-        if len(self.enemies3) < 5:
-            enemyThree = EnemyThree()
-            self.enemies3.append(enemyThree)
-
-    def draw(self, screen):
-        for enemy in self.enemies:
-            enemy.draw(screen)
-        for enemytwo in self.enemies2:
-            enemytwo.draw(screen)
-        for enemyThree in self.enemies3:
-            enemyThree.draw(screen)
+  def update(self, bullet_manager):
+    self.add_enemy()
+    
+    for enemy in self.enemies:
+      enemy.update(self.enemies, bullet_manager)
+  
+  def draw(self, screen):
+    for enemy in self.enemies:
+      enemy.draw(screen)
+      
+  def add_enemy(self):
+    enemy_type = random.randint(1,2)
+    if len(self.enemies) < 1:
+      if enemy_type == 1:
+        enemy = CommonEnemy()
+      else:
+        enemy = StrongEnemy()
+      self.enemies.append(enemy) 
 
     def reset(self):
         self.enemies = []

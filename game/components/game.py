@@ -39,7 +39,7 @@ class Game:
     def update(self):
         user_iput = pygame.key.get_pressed()
         self.player.update(user_iput,self)
-        self.enemy_manager.update(self)
+        self.enemy_manager.update(self.bullet_manager)
         self.bullet_manager.update(self)
 
     def draw(self):

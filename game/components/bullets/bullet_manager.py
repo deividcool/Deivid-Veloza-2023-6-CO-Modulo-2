@@ -16,7 +16,6 @@ class BulletManager:
         self.player_guns = game.player.guns 
 
         for bullet in self.enemy_bullets:
-            self.SoundGunEnemy.play()
             bullet.update(self.enemy_bullets)
 
             if bullet.rect.colliderect(game.player.rect) and bullet.owner == 'enemy':
@@ -50,8 +49,6 @@ class BulletManager:
     def add_bullet(self, bullet):
         if bullet.owner == 'enemy' and len(self.enemy_bullets) < 1:
             self.enemy_bullets.append(bullet)
-     
-
         if bullet.owner == 'player' and len(self.player_bullets) <= self.player_guns:
             self.player_bullets.append(bullet)
     
