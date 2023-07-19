@@ -29,5 +29,3 @@ class EnemyManager:
 
     def reset(self):
         self.enemies = []
-        self.enemies2 = []
-        self.enemies3 = []
