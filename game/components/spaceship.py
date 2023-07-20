@@ -10,18 +10,16 @@ class Spaceship(Sprite):
     Y_POS = 500
 
     def __init__(self):
-        self.image = SPACESHIP
-        self.image = pygame.transform.scale(self.image, (40,60))
+        self.image = pygame.transform.scale(SPACESHIP, (40,60))
         self.rect = self.image.get_rect()
         self.rect.x = self.X_POS
         self.rect.y = self.Y_POS
         self.type = 'player'
-        self.has_power_up = False
-        self.power_up_timer = 0
         self.power_up_type = DEFAULT_TYPE
-        self.guns = 0
+        self.has_power_up = False
+        self.power_time_up = 0
+        self.guns = 1
         self.speed = 0
-        self.lifes = 3
 
 
     def update(self, user_input, game):
@@ -52,20 +50,23 @@ class Spaceship(Sprite):
 
     def move_up(self,game):
         if self.rect.y > SCREEN_HEIGHT // 2:
-            self.rect.y -= 10 + game.player.speed
+            self.rect.y -= 10 
 
     def move_down(self,game):
         if self.rect.y < SCREEN_HEIGHT - 70:
-            self.rect.y += 10 + game.player.speed
+            self.rect.y += 10 
 
     def draw(self, screen):
         screen.blit(self.image,(self.rect.x, self.rect.y))
 
     def set_image(self, size=(40,60), image=SPACESHIP):
-        self.image = image
-        self.image = pygame.transform.scale(self.image, size)
+        self.image = pygame.transform.scale(image, size)
     
 
     def shoot(self, game):
         bullet = Bullet(self)
         game.bullet_manager.add_bullet(bullet)
+    
+    def reset(self):
+        self.rect.x = self.X_POS
+        self.rect.y = self.Y_POS

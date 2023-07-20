@@ -18,8 +18,8 @@ class Enemy(Sprite):
   
   MOV_X = { 0: 'left', 1: 'right' }
   
-  INITIAL_SHOOTING_TIME = 2000
-  FINAL_SHOOTING_TIME = 4000
+  INITIAL_SHOOTING_TIME = 3000
+  FINAL_SHOOTING_TIME = 6000
   
   def __init__(self, image, speed_x = SPEED_X, speed_y = SPEED_Y, move_x_for = random.randint(30, 100)):
     self.image = pygame.transform.scale(image, (self.ENEMY_WIDTH, self.ENEMY_HEIGHT))
@@ -70,7 +70,9 @@ class Enemy(Sprite):
       bullet_manager.add_bullet(bullet)
       self.shooting_time += random.randint(self.INITIAL_SHOOTING_TIME, self.FINAL_SHOOTING_TIME)
       
-  def decrease_hitpoints(self, ships):
+      
+  def decrease_hitpoints(self, game):
     self.hitpoints -= 1
     if self.hitpoints <= 0:
-      ships.remove(self)
+      game.score.update()
+      game.enemy_manager.enemies.remove(self)
